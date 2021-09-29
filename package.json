@@ -1,0 +1,19 @@
+{
+  "name": "reviews",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rfp55-sdc-navi/reviews.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rfp55-sdc-navi/reviews/issues"
+  },
+  "homepage": "https://github.com/rfp55-sdc-navi/reviews#readme"
+}
