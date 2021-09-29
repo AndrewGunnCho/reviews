@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/rfp55-sdc-navi/reviews/issues"
   },
-  "homepage": "https://github.com/rfp55-sdc-navi/reviews#readme"
+  "homepage": "https://github.com/rfp55-sdc-navi/reviews#readme",
+  "dependencies": {
+    "pg": "^8.7.1"
+  }
 }
