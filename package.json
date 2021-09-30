@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rfp55-sdc-navi/reviews#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "pg": "^8.7.1"
   }
 }
