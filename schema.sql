@@ -1,24 +1,3 @@
--- COPY reviews
--- FROM '/Users/andy/Downloads/reviews.csv'
--- DELIMITER ','
--- CSV HEADER;
-
--- COPY photos
--- FROM '/Users/andy/Downloads/reviews_photos.csv'
--- DELIMITER ','
--- CSV HEADER;
-
--- COPY characteristics
--- FROM '/Users/andy/Downloads/characteristics.csv'
--- DELIMITER ','
--- CSV HEADER;
-
--- COPY characteristics_review
--- FROM '/Users/andy/Downloads/characteristic_reviews.csv'
--- DELIMITER ','
--- CSV HEADER;
-
-
 DROP TABLE characteristics_review;
 DROP TABLE characteristics;
 DROP TABLE photos;
