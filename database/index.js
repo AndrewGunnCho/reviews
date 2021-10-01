@@ -29,7 +29,7 @@ module.exports = {
       if (err) {
         callback (err, null)
       } else {
-        callbacl (null, data.rows)
+        callback (null, data.rows)
       }
     })
   },

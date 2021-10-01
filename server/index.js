@@ -20,9 +20,16 @@ app.get('/reviews/', (req, res) => {
   })
 })
 
-// app.get('/reviews/meta', (req,res) => {
-//   var params = Object.assign([], req.query.product_id);
-// })
+app.get('/reviews/meta', (req,res) => {
+  var params = Object.assign([], req.query.product_id);
+  db.getMeta(params, (err, data) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(data);
+    }
+  })
+})
 
 
 
