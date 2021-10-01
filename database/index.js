@@ -14,16 +14,55 @@ pool.on('error', (err, client) => {
 });
 
 module.exports = {
-  get: (callback) => {
-    pool.query('SELECT * FROM reviews WHERE ', (err, data) => {
+  get: (params, callback) => {
+    pool.query('SELECT rating FROM reviews WHERE product_id = $1 LIMIT 2', params, (err, data) => {
       if (err) {
         callback (err, null)
       } else {
-        callback (null, data)
+        callback (null, data.rows)
+      }
+    })
+  },
+
+  getMeta: (params, callback) => {
+    pool.query('SELECT rating FROM reviews WHERE product_id = $1 LIMIT 2', params, (err, data) => {
+      if (err) {
+        callback (err, null)
+      } else {
+        callbacl (null, data.rows)
+      }
+    })
+  },
+
+  post: (params, callback) => {
+    pool.query('INSERT INTO reviews (product_id, rating, date, summary, body, recommend, reported, reviewer_name, reviewer_email, response, helpfulness) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', params, (err, data) => {
+      if (err) {
+        callback (err, null);
+      } else {
+        callback (null, data);
+      }
+    })
+  },
+
+  put: (params, callback) => {
+    pool.query('UPDATE reviews SET helpful = helpful + 1 WHERE review_id = ?', params, (err, data) => {
+      if (err) {
+        callback (err, null);
+      } else {
+        callback (null, data);
+      }
+    })
+  },
+
+  report: (params, callback) => {
+    pool.query('UPDATE reviews SET reported = true WHERE reported = false', params, (err,data) => {
+      if (err) {
+        callback (err, null);
+      } else {
+        callback (null, data);
       }
     })
   }
-
 
 }
 

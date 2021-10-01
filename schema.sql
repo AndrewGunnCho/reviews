@@ -11,8 +11,8 @@ CREATE TABLE reviews (
  date BIGINT,
  summary VARCHAR,
  body VARCHAR,
- recommend BYTEA,
- reported VARCHAR,
+ recommend BOOLEAN,
+ reported BOOLEAN,
  reviewer_name VARCHAR,
  reviewer_email VARCHAR,
  response VARCHAR,
@@ -20,8 +20,8 @@ CREATE TABLE reviews (
 );
 
 
-ALTER TABLE reviews ADD CONSTRAINT reviews_pkey PRIMARY KEY (id);
--- ALTER TABLE reviews ADD INDEX product_id (product_id);
+CREATE INDEX product_id ON reviews (product_id);
+
 
 CREATE TABLE photos (
  id BIGSERIAL,
@@ -30,8 +30,8 @@ CREATE TABLE photos (
 );
 
 
-ALTER TABLE photos ADD CONSTRAINT photos_pkey PRIMARY KEY (id);
--- ALTER TABLE photos ADD INDEX reviews_id (reviews_id);
+CREATE INDEX review_id ON photos (review_id);
+
 
 CREATE TABLE characteristics (
  id BIGSERIAL,
@@ -40,7 +40,7 @@ CREATE TABLE characteristics (
 );
 
 
-ALTER TABLE characteristics ADD CONSTRAINT characteristics_pkey PRIMARY KEY (id);
+-- ALTER TABLE characteristics ADD CONSTRAINT characteristics_pkey PRIMARY KEY (id);
 -- ALTER TABLE characteristics ADD INDEX product_id (product_id);
 
 CREATE TABLE characteristics_review (
@@ -51,7 +51,8 @@ CREATE TABLE characteristics_review (
 );
 
 
-ALTER TABLE characteristics_review ADD CONSTRAINT characteristics_review_pkey PRIMARY KEY (id);
+CREATE INDEX characteristic_id ON characteristics_review (characteristic_id);
+
 
 ALTER TABLE photos ADD CONSTRAINT photos_review_id_fkey FOREIGN KEY (review_id) REFERENCES reviews(id);
 ALTER TABLE characteristics_review ADD CONSTRAINT characteristics_review_characteristic_id_fkey FOREIGN KEY (characteristic_id) REFERENCES characteristics(id);

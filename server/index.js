@@ -9,9 +9,9 @@ const app = express();
 app.use(express.json());
 
 
-
-app.get('/:id', (req, res, next) => {
-  db.get((err, data) => {
+app.get('/reviews/', (req, res) => {
+  var params = Object.assign([], req.query.product_id);
+  db.get(params, (err, data) => {
     if (err) {
       res.send(err)
     } else {
@@ -19,6 +19,12 @@ app.get('/:id', (req, res, next) => {
     }
   })
 })
+
+// app.get('/reviews/meta', (req,res) => {
+//   var params = Object.assign([], req.query.product_id);
+// })
+
+
 
 
 app.listen(PORT, () => {
