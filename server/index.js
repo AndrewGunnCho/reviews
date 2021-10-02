@@ -10,7 +10,7 @@ app.use(express.json());
 
 
 app.get('/reviews/', (req, res) => {
-  var params = Object.assign([], req.query.product_id);
+  var params = [req.query.product_id];
   db.get(params, (err, data) => {
     if (err) {
       res.send(err)
@@ -21,7 +21,7 @@ app.get('/reviews/', (req, res) => {
 })
 
 app.get('/reviews/meta', (req,res) => {
-  var params = Object.assign([], req.query.product_id);
+  var params = [req.query.product_id];
   db.getMeta(params, (err, data) => {
     if (err) {
       res.send(err)
@@ -29,6 +29,19 @@ app.get('/reviews/meta', (req,res) => {
       res.send(data);
     }
   })
+})
+
+app.post('/reviews', (req,res) => {
+  console.log(req.body)
+  var params = [req.body.product_id, req.body.rating, new Date(), req.body.summary, req.body.body, req.body.recommend, req.body.name, req.body.email, req.body.photos, req.body.characteristics];
+  console.log(params)
+  // db.getMeta(params, (err, data) => {
+  //   if (err) {
+  //     res.send(err)
+  //   } else {
+  //     res.sendStatus(201);
+  //   }
+  // })
 })
 
 
