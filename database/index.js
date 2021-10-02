@@ -17,9 +17,21 @@ pool.on('error', (err, client) => {
 // VALUES ${characteristicsQuery('id', 'reviewsIns')}
 // separate the entries for photos and characteristics
 
+// get: (params, callback) => {
+//   pool.query('SELECT id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness FROM reviews WHERE product_id = $1 AND reported IS NOT TRUE LIMIT 5', params, (err, data) => {
+//     if (err) {
+//       callback (err, null)
+//     } else {
+//       callback (null, data.rows)
+//     }
+//   })
+// },
+
+
 module.exports = {
-  get: (params, callback) => {
-    pool.query('SELECT rating FROM reviews WHERE product_id = $1 LIMIT 2', params, (err, data) => {
+  get: (text, callback) => {
+    pool.query(text, null, (err, data) => {
+      console.log(err)
       if (err) {
         callback (err, null)
       } else {
@@ -38,10 +50,19 @@ module.exports = {
     })
   },
 
-  // WITH ins1 AS (
-  //   INSERT INTO reviews (rating, date, summary, body, recommend, reviewer_name, reviewer_email)
-  //   VALUES ($2, $3, $4, $5, $6, $7, $8)
-  //   RETURNING
+  // WITH reviews AS (
+  //   INSERT INTO reviews (product_id, rating, date, summary, body, recommend, reviewer_name, reviewer_email)
+  //   VALUES (4, 4, 123423152315, 'lol', 'test', true, 'a', 'a@a.com')
+  //   RETURNING id
+  //   )
+  // , photos AS (
+  //   INSERT INTO photos (url, review_id)
+  //   VALUES (['https//:gottem.com', 'https//:lmao.com'], id) <- need to separate
+  // , characteristics_review AS (
+  //   INSERT INTO ()
+  //   VALUES ()
+  // )
+
 
 
   post: (params, callback) => {
