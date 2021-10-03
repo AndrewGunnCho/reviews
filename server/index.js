@@ -59,8 +59,16 @@ app.get('/reviews/', (req, res) => {
 })
 
 app.get('/reviews/meta', (req, res) => {
-  var params = [req.query.product_id];
-  db.getMeta(params, (err, data) => {
+
+
+  var text =
+    `SELECT json_build_object(
+      'product_id', ${req.query.product_id},
+      'ratings', 1,
+      'characteristics',
+    )`;
+
+  db.getMeta(text, params, (err, data) => {
     if (err) {
       res.send(err)
     } else {
