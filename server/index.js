@@ -34,11 +34,13 @@ app.get('/reviews/', (req, res) => {
     'product', ${req.query.product_id},
     'page', ${page} - 1,
     'count', ${count},
-    'results', (SELECT json_agg(row_to_json(reviews))
-    FROM (SELECT id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness,
+    'results',
+      (SELECT json_agg(row_to_json(reviews))
+      FROM (SELECT id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness,
         (SELECT array_agg(json_build_object(
         'id', id,
-        'url', url))
+        'url', url
+        ))
         FROM photos
         WHERE review_id = reviews.id)
         AS photos
@@ -46,8 +48,9 @@ app.get('/reviews/', (req, res) => {
       WHERE product_id = ${req.query.product_id}
       AND reported IS NOT TRUE
       ORDER BY id DESC
-      OFFSET ((${page} - 1) * ${count})
-      ROWS FETCH NEXT ${count} ROWS ONLY) AS reviews))`;
+      OFFSET ((${page} - 1) * ${count}) ROWS
+      FETCH NEXT ${count} ROWS ONLY)
+      AS reviews))`;
 
   db.get(text, (err, data) => {
     if (err) {
@@ -58,21 +61,59 @@ app.get('/reviews/', (req, res) => {
   })
 })
 
-app.get('/reviews/meta', (req, res) => {
+// first attempt
 
+// `SELECT json_build_object(
+//   'product_id', ${req.query.product_id},
+//   'ratings', 1,
+//   'recommended', 1,
+//   'characteristics',
+//     (SELECT json_agg(json_build_object(
+//       name,
+//       (SELECT json_agg(json_build_object(
+//         'id', id,
+//         'value', value
+//       ))
+//       FROM characteristics_review
+//       WHERE review_id = review.id
+//       AND characteristic_id = characteristics.id)
+//     ))
+//     FROM characteristics
+//     WHERE product_id = ${req.query.product_id})
+//   FROM reviews
+//   WHERE product_id = ${req.query.product_id})`
+
+
+app.get('/reviews/meta', (req, res) => {
 
   var text =
     `SELECT json_build_object(
       'product_id', ${req.query.product_id},
       'ratings', 1,
+      'recommended', 1,
       'characteristics',
-    )`;
+        (SELECT row_to_json(characteristics)
+        FROM (SELECT name,
+          (SELECT json_build_object(
+          'id', id,
+          'value', value
+          )
+          FROM characteristics_review
+          WHERE characteristic_id = characteristics.id
+          AND review_id = reviews.id)
+          AS characteristics_review
+        FROM characteristics
+        WHERE product_id = ${req.query.product_id})
+        AS characteristics)
+      FROM reviews
+      WHERE product_id = ${req.query.product_id}
+      AS reviews)`;
 
-  db.getMeta(text, params, (err, data) => {
+  db.getMeta(text, (err, data) => {
     if (err) {
       res.send(err)
     } else {
-      res.send(data);
+      res.send(data[0].json_build_object);
     }
   })
 })

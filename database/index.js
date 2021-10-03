@@ -13,6 +13,28 @@ pool.on('error', (err, client) => {
   console.error('Error:', err);
 });
 
+const getRating = (id) => {
+  // obj
+  var obj = {};
+
+  // loop through ratings in reviews where product_id
+    // set rating with value as key and increment
+      // if it exists, increment
+
+  // return object // <- attach this to ratings
+}
+
+const getRecommend = (id) => {
+  // obj
+  var obj = {};
+
+  // loop through recommend in reviews where product_id
+    // set key as boolean and increment
+      // if it exists, increment
+
+  // return object // <- attach this to recommended
+}
+
 // VALUES ${photosQuery('id', 'reviewsIns', 'photos')}
 // VALUES ${characteristicsQuery('id', 'reviewsIns')}
 // separate the entries for photos and characteristics
@@ -31,7 +53,7 @@ pool.on('error', (err, client) => {
 module.exports = {
   get: (text, callback) => {
     pool.query(text, null, (err, data) => {
-      console.log(err)
+      // console.log(err)
       if (err) {
         callback (err, null)
       } else {
@@ -42,6 +64,7 @@ module.exports = {
 
   getMeta: (text, callback) => {
     pool.query(text, null, (err, data) => {
+      console.log(err)
       if (err) {
         callback (err, null)
       } else {
