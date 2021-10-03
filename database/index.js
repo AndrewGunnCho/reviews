@@ -40,8 +40,8 @@ module.exports = {
     })
   },
 
-  getMeta: (params, callback) => {
-    pool.query('SELECT rating FROM reviews WHERE product_id = $1 LIMIT 2', params, (err, data) => {
+  getMeta: (text, callback) => {
+    pool.query(text, null, (err, data) => {
       if (err) {
         callback (err, null)
       } else {
