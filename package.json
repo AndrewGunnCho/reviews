@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
-    "k6": "k6 run ./k6.js"
+    "k6": "k6 run script.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "k6": "0.0.0",
+    "newrelic": "^8.4.0",
     "nodemon": "^2.0.13",
     "pg": "^8.7.1",
     "pg-cursor": "^2.7.1"
