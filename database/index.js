@@ -13,27 +13,27 @@ pool.on('error', (err, client) => {
   console.error('Error:', err);
 });
 
-const getRating = (id) => {
+// const getRating = (id) => {
   // obj
-  var obj = {};
+  // var obj = {};
 
   // loop through ratings in reviews where product_id
     // set rating with value as key and increment
       // if it exists, increment
 
   // return object // <- attach this to ratings
-}
+// }
 
-const getRecommend = (id) => {
+// const getRecommend = (id) => {
   // obj
-  var obj = {};
+  // var obj = {};
 
   // loop through recommend in reviews where product_id
     // set key as boolean and increment
       // if it exists, increment
 
   // return object // <- attach this to recommended
-}
+// }
 
 // VALUES ${photosQuery('id', 'reviewsIns', 'photos')}
 // VALUES ${characteristicsQuery('id', 'reviewsIns')}
@@ -49,6 +49,16 @@ const getRecommend = (id) => {
 //   })
 // },
 
+// const characteristics = (id) => {
+//   `SELECT * FROM characteristics WHERE product_id = ${id}`
+// }
+
+// let obj = {
+//   `product_id: ${data.id},
+//   ratings: ${},
+//   recommended: ${},
+//   characteristics: ${characteristics()}`
+// }
 
 module.exports = {
   get: (text, callback) => {
@@ -68,7 +78,8 @@ module.exports = {
       if (err) {
         callback (err, null)
       } else {
-        callback (null, data.rows)
+        obj[data]
+        callback (null, obj)
       }
     })
   },

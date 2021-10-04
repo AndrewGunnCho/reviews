@@ -84,30 +84,56 @@ app.get('/reviews/', (req, res) => {
 //   WHERE product_id = ${req.query.product_id})`
 
 
+// ---
+
+// `SELECT json_build_object(
+//   'product_id', ${req.query.product_id},
+//   'ratings', 1,
+//   'recommended', 1,
+//   'characteristics',
+//     (SELECT json_agg(row_to_json(characteristics))
+//     FROM (SELECT name,
+//       (SELECT json_build_object(
+//       'id', id,
+//       'value', value
+//       )
+//       FROM characteristics_review
+//       WHERE characteristic_id = characteristics.id
+//       AND review_id = reviews.id)
+//       AS characteristics_review
+//     FROM characteristics
+//     WHERE product_id = ${req.query.product_id})
+//     AS characteristics)
+//   FROM reviews
+//   WHERE product_id = ${req.query.product_id}
+//   AS reviews)`;
+
+
 app.get('/reviews/meta', (req, res) => {
 
-  var text =
-    `SELECT json_build_object(
-      'product_id', ${req.query.product_id},
-      'ratings', 1,
-      'recommended', 1,
-      'characteristics',
-        (SELECT row_to_json(characteristics)
-        FROM (SELECT name,
-          (SELECT json_build_object(
-          'id', id,
-          'value', value
-          )
-          FROM characteristics_review
-          WHERE characteristic_id = characteristics.id
-          AND review_id = reviews.id)
-          AS characteristics_review
-        FROM characteristics
-        WHERE product_id = ${req.query.product_id})
-        AS characteristics)
-      FROM reviews
-      WHERE product_id = ${req.query.product_id}
-      AS reviews)`;
+  // var text =
+    // `SELECT json_build_object(
+    //   'product_id', 1,
+    //   'ratings', 1,
+    //   'recommended', 1,
+    //   'characteristics',
+    //     (SELECT json_agg(row_to_json(characteristics))
+    //     FROM (SELECT name,
+    //       (SELECT json_build_object(
+    //       'id', id,
+    //       'value', value
+    //       ) AS test
+    //       FROM characteristics_review
+    //       WHERE characteristic_id = 1
+    //       AND review_id = 1)
+    //       AS characteristics_review
+    //     FROM characteristics
+    //     WHERE product_id = 1)
+    //     AS characteristics)
+    //   FROM reviews
+    //   WHERE product_id = 1
+    //   AS reviews)`;
+
 
   db.getMeta(text, (err, data) => {
     if (err) {
@@ -135,5 +161,5 @@ app.post('/reviews', (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Make me suffer at port: ${PORT}`);
+  console.log(`Port:${PORT} brings me eternal suffering`);
 });
