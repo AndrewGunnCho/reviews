@@ -1,12 +1,13 @@
 const { Pool } = require('pg');
 const Cursor = require('pg-cursor');
+const config = require('../config.js');
 
 const pool = new Pool({
-  user: 'root',
-  host: 'localhost',
-  password: '',
-  database: 'review',
-  port: 5432,
+  user: config.user,
+  host: config.host,
+  password: config.password,
+  database: config.database,
+  port: config.port,
 })
 
 pool.on('error', (err, client) => {
