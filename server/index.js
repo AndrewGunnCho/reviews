@@ -24,6 +24,10 @@ app.use(express.json());
 // THEN '[]'
 // ELSE 'id', id, 'url', url END
 
+app.get('/loaderio-3189e9804fe8dbb8b29612d3f02f7bc2', (req, res) => {
+  res.send('loaderio-3189e9804fe8dbb8b29612d3f02f7bc2');
+})
+
 app.get('/reviews/', (req, res) => {
 
   var page = req.query.page || 1;
