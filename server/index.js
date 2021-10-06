@@ -59,7 +59,7 @@ app.get('/reviews/', (req, res) => {
 
   db.get(text, (err, data) => {
     if (err) {
-      res.send(err)
+      res.status(500).send
     } else {
       res.send(data[0].json_build_object)
     }
