@@ -4,11 +4,11 @@ Our task is to build out and replace the API to support the Project Catwalk appl
 
 The Ratings and Reviews API for Project Catwalk is able to handle 600,000 requests per minute with an average of 15 ms response time and 0% error rate for one page  within the last 10% of the dataset.
 
-![Single]:[single]
+![single]
 
 The API is also able to handle 600,000 requests per minute with an average of 1,263 ms response time and 3.9% error rate for the last 10% of the dataset.
 
-![Randomized]:[randomized]
+![randomized]
 
 Structure:
 
@@ -56,5 +56,5 @@ Project Link: [https://github.com/rfp55-sdc-navi/reviews](https://github.com/rfp
 <!-- images -->
 
 [single]: images/single.png
-[randomized]: image/randomized.png
+[randomized]: images/randomized.png
 
