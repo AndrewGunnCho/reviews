@@ -10,6 +10,10 @@ The API is also able to handle 600,000 requests per minute with an average of 1,
 
 ![Randomized]:[randomized]
 
+Structure:
+
+![Structure]:[structure]
+
 ### Built With
 
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-20232A?style=for-the-badge&logo=postgresql&logoColor=blue)
@@ -31,14 +35,14 @@ The API is also able to handle 600,000 requests per minute with an average of 1,
   ```sh
   npm run start
   ```
-  
+
 ## Usage
 
 * The get route for /reviews will return all the reviews for the given product_id. Product_id must be passed through the query paramater. Page and count can be added an as optional query to show a certain list of results (default 0) and/or limit the amount of results (default 5) respectively.
 
 ## Contact
 
-Andrew Cho - [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/andrew-cho-b06768218/)](https://www.linkedin.com/in/andrew-cho-b06768218/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/AndrewGunnCho)](https://github.com/AndrewGunnCho)
+Andrew Cho: [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/andrew-cho-b06768218/)](https://www.linkedin.com/in/andrew-cho-b06768218/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/AndrewGunnCho)](https://github.com/AndrewGunnCho)
 
 Project Link: [https://github.com/rfp55-sdc-navi/reviews](https://github.com/rfp55-sdc-navi/reviews)
 
@@ -47,3 +51,10 @@ Project Link: [https://github.com/rfp55-sdc-navi/reviews](https://github.com/rfp
 * k6.io
 * new relic
 * loader.io
+
+
+<!-- images -->
+
+[single]: images/single.png
+[randomized]: image/randomized.png
+
