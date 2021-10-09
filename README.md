@@ -10,9 +10,11 @@ The API is also able to handle 600,000 requests per minute with an average of 1,
 
 ![randomized]
 
+Horizontally Scaled Servers
+
 Structure:
 
-![Structure]:[structure]
+![structured]
 
 ### Built With
 
@@ -53,8 +55,9 @@ Project Link: [https://github.com/rfp55-sdc-navi/reviews](https://github.com/rfp
 * loader.io
 
 
-<!-- images -->
+<!-- Images -->
 
 [single]: images/single.png
 [randomized]: images/randomized.png
+[structured]: images/structured.png
 
