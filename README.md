@@ -50,9 +50,10 @@ Project Link: [https://github.com/rfp55-sdc-navi/reviews](https://github.com/rfp
 
 ## Acknowledgments
 
-* k6.io
-* new relic
-* loader.io
+* Loader.io
+* New Relic
+* K6
+
 
 
 <!-- Images -->
